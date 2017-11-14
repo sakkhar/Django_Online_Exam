@@ -1,0 +1,59 @@
+{% extends "onlinetest/header.html" %} {% block content %}
+<br>
+<center><h2><b>Test ID : {{ testid.test_id }} </b></h2></center>
+<center><b>{{ unsuccess }} </b> </center>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <center>
+                <h3>Register</h3>
+            </center>
+            <form class="form col-md-12" method="POST" action="{% url 'onlinetest:studentRegSave' %}">
+                {% csrf_token %}
+                <center>
+                    <div class="form-group">
+                        <input type="text" class="form-control"  name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email"  name="email" class="form-control" placeholder="Email-ID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control"  name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control"  name="rollno" placeholder="Roll No or ID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control"  name="client" value="{{ testid.client_id }}">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info"><b>Start Test</b></button>
+                    </div>
+                </center>
+            </form>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <center>
+                <h3> Sign In</h3>
+            </center>
+            <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentLogincheck' %}">
+                {% csrf_token %}
+                <center>
+                    <div class="form-group">
+                        <input type="email" class="form-control"  name="email" autofocus placeholder="Email-ID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control"  name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit"><b>Start Test</b></button>
+                    </div>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
